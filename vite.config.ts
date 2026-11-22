@@ -10,6 +10,9 @@ const hasCerts = fs.existsSync(certPath) && fs.existsSync(keyPath)
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Relative base so the build works on GitHub Pages project sites
+  // (https://<user>.github.io/<repo>/) regardless of the repo name.
+  base: './',
   plugins: [react()],
   server: {
     host: '0.0.0.0', // allow LAN access

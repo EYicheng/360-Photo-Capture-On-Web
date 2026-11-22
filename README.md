@@ -79,6 +79,20 @@ netlify deploy --prod --build
 
 也可以直接在两个平台的 Web 控制台导入本仓库，构建命令 `pnpm build`、输出目录 `dist` 已分别在 `vercel.json` 与 `netlify.toml` 中配置好。
 
+### GitHub Pages
+
+仓库已内置 [.github/workflows/deploy.yml](.github/workflows/deploy.yml)，推送到 `main` 后会自动构建并发布到 `https://<你的用户名>.github.io/360-Photo-Capture-On-Web/`。
+
+一次性启用步骤：
+
+1. 打开仓库 **Settings → Pages**；
+2. **Source** 选择 **GitHub Actions**（不要选 "Deploy from a branch"）；
+3. 向 `main` 推送任意提交（或手动运行 **Actions → Deploy to GitHub Pages → Run workflow**）。
+
+`vite.config.ts` 里的 `base: './'` 使用相对路径，因此无论仓库名是什么、部署在项目页还是用户页都能正确加载资源。`public/.nojekyll` 则避免分支部署时 Jekyll 干扰。
+
+> 注意：GitHub Pages 需要 **HTTPS**，而相机权限必须 HTTPS —— GitHub Pages 默认就是 HTTPS，所以直接用即可。
+
 ## 技术栈
 
 - Vite + React 19 + TypeScript
